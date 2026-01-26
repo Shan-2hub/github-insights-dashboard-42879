@@ -1,0 +1,5 @@
+# Template (workspace): non-secret defaults for development
+POSTGRES_USER="devuser"
+POSTGRES_DB="devdb"
+# Do NOT place POSTGRES_PASSWORD here. Supply via env or /run/secrets/pg_password
+SECRET_KEY="dev-secret-key"
