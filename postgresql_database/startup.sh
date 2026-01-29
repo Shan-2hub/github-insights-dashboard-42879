@@ -1,10 +1,16 @@
 #!/bin/bash
 
 # Minimal PostgreSQL startup script with full paths
+#
+# NOTE: The Kavia container platform expects this database to be reachable on port 3002.
+# The container's .env sets PGPORT=3002, but this script previously hard-coded DB_PORT=5000,
+# causing the readiness check on 3002 to fail.
 DB_NAME="myapp"
 DB_USER="appuser"
 DB_PASSWORD="dbuser123"
-DB_PORT="5000"
+
+# Prefer environment-configured port (PGPORT/POSTGRES_PORT), fall back to legacy default.
+DB_PORT="${PGPORT:-${POSTGRES_PORT:-3002}}"
 
 echo "Starting PostgreSQL setup..."
 
